@@ -1,7 +1,8 @@
 import requests
+url = ""
 
 try:
-    r = requests.get("http://120.125.82.173", timeout=5)
+    r = requests.get(url, timeout=5)
     if r.status_code==200:
         print("有連通")
     else:
