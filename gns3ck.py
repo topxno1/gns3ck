@@ -2,9 +2,8 @@ import requests
 import string
 import time
 
-url = "http://120.125.82.173"
-#url = "http://120.125.82.155"
-#url = "https://docs.python.org/zh-tw/3/library/tisdfsdf"
+url = ""
+
 
 try:
     r = requests.get(url, timeout=5)
