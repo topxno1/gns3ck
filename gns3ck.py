@@ -2,20 +2,31 @@ import requests
 import string
 import time
 
-url = ""
+def http_error_log(code):
+    f=open('log.txt','a')
+    f.write(time.ctime()+" HTTP Error "+str(code)+"\n")
+    f.close()        
 
-
-try:
-    r = requests.get(url, timeout=5)
-    if r.status_code==200:
-        print("有連通")
-    else:
-        print("無回應")
-        f=open('log.txt','a')
-        f.write(time.ctime()+" HTTP Error "+str(r.status_code)+"\n")
-        f.close()
-except Exception as e:
-    print("無連通")
+def except_log(e):
     f=open('log.txt','a')
     f.write(time.ctime()+" "+str(e)+"\n")
     f.close()
+
+def http_check(url):
+    try:
+        r = requests.get(url, timeout=5)
+        if r.status_code==200:
+            return "有回應"
+        else:
+            http_error_log(r.status_code)
+            return "無回應"
+    except Exception as e:
+        http_error_log(e)
+        return "無連通"
+
+
+
+
+
+print(http_check(url))
+
